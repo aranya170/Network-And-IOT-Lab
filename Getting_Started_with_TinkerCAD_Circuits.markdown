@@ -176,4 +176,4 @@ Tinkercad also offers "Starter Circuits" that can be found by selecting the "com
 
 Here’s a small tutorial on LED control in TinkerCAD using block-based coding:
 
-<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/8e68dd73-e21d-4c3b-b877-6871683c51a1" />
+[TinkerCAD LED Control Tutorial](https://www.youtube.com/watch?v=8KTVTu9iIO0)
