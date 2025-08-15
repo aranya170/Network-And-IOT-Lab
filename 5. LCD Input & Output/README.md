@@ -45,6 +45,8 @@ Connect the potentiometer for contrast:
 
 - Click the potentiometer in Tinkercad, and in the properties panel, set the slider to ~50% for initial contrast. Adjust later if the text isn't visible.
 
+<img width="1192" height="745" alt="image" src="https://github.com/user-attachments/assets/d3a91507-adf3-49ce-8c39-faa638ba07ce" />
+
 ## Step 2: Add the Arduino Code
 
 ### Open the Code Editor
