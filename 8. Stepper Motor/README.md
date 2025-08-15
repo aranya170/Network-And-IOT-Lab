@@ -74,7 +74,10 @@ Pin 4
 EN (optional)
 Arduino GND (always on)
 
-⚠️ Always connect the 100 µF capacitor across VMOT and GND (close to the driver) to protect against voltage spikes.
+Always connect the 100 µF capacitor across VMOT and GND (close to the driver) to protect against voltage spikes.
+
+<img width="616" height="518" alt="image" src="https://github.com/user-attachments/assets/1a7691ee-f832-4bea-bd50-8614107f8333" />
+
 
 3. Arduino Code — Basic Rotation
    In Circuit Designer IDE, open the code editor for the Arduino Uno and paste the following code:
