@@ -30,6 +30,8 @@ This tutorial will guide you through controlling a simple **DC motor with 2 term
 
 > 💡 The diode protects the circuit from voltage spikes when the motor stops.
 
+<img width="1007" height="618" alt="image" src="https://github.com/user-attachments/assets/e02708f8-2aa9-47b7-85ad-b59df919153b" />
+
 ---
 
 ## 3. Arduino Code — On/Off Control
