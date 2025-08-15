@@ -47,6 +47,8 @@ Correct electrical connections are essential for the circuit to function.
   - Connect the cathode (shorter leg) to a 220-ohm resistor, then connect the other end of the resistor to the blue or black (-) rail (GND).
 - Ensure each LED is oriented correctly (anode to Arduino pin, cathode to resistor).
 
+<img width="730" height="748" alt="image" src="https://github.com/user-attachments/assets/8f099db2-ac11-4a21-aa68-1e4110ba978a" />
+
 ### 4. Coding the Arduino
 
 The Arduino is programmed using a C++-based language.
