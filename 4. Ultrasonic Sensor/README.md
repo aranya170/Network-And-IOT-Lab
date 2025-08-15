@@ -44,6 +44,9 @@ Making correct electrical connections is crucial for your circuit to function.
 - **Sensor's GND pin**: Connect this pin to any hole on the black (-) rail of your breadboard.
 - **Sensor's SIG pin**: Connect this pin to Digital Pin 7 on your Arduino board. This pin will be used for both sending the ultrasound pulse and listening for the echo.
 
+<img width="1219" height="715" alt="image" src="https://github.com/user-attachments/assets/ab74874d-e2d9-457e-b83d-3d5624d055b5" />
+
+
 ### 4. Coding the Arduino
 
 The Arduino is programmed using a C++ based language.
