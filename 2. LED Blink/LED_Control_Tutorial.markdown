@@ -24,6 +24,8 @@ This tutorial guides you through creating a simple LED circuit in TinkerCAD Circ
 6. **Organize Wires**:
    - Change wire colors (click a wire and select a color) for clarity, e.g., red for positive connections and black for ground.
 
+<img width="927" height="602" alt="image" src="https://github.com/user-attachments/assets/d8c7c829-c435-4995-b4a1-d2b6f43b620e" />
+
 ## Step 2: Programming with Block-Based Code
 1. Click the **"Code"** button in the upper right to open the code editor.
 2. Ensure the editor is set to **Blocks** mode (default for beginners).
@@ -60,13 +62,13 @@ This tutorial guides you through creating a simple LED circuit in TinkerCAD Circ
 - **Switch to Text Code**: Click the **Text** option in the code editor to see the equivalent C++ code for your blocks. For this circuit, it would resemble:
   ```cpp
   void setup() {
-    pinMode(7, OUTPUT);
+    pinMode(9, OUTPUT);
   }
 
   void loop() {
-    digitalWrite(7, HIGH);
+    digitalWrite(9, HIGH);
     delay(1000);
-    digitalWrite(7, LOW);
+    digitalWrite(9, LOW);
     delay(1000);
   }
   ```
