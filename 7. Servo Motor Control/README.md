@@ -64,6 +64,9 @@ void loop() {
 }
 ```
 
+<img width="1117" height="630" alt="image" src="https://github.com/user-attachments/assets/ac8d0a7b-e2e7-4a5a-bbf6-ad1832b19aed" />
+
+
 ---
 
 ## 5. Arduino Code — Move to Specific Angles
