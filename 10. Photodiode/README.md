@@ -65,7 +65,8 @@ From the components panel (right side), drag the following to the workspace:
    - **Anode** (longer leg) to Arduino pin **9** (PWM-capable).
    - **Cathode** (shorter leg) to a 220-ohm resistor, then connect the resistor to the breadboard’s blue (-) rail (GND).
 
-![Circuit Diagram](https://via.placeholder.com/616x518.png?text=Photodiode+Circuit+Image)
+![Circuit Diagram](<img width="1025" height="679" alt="image" src="https://github.com/user-attachments/assets/3457af60-3ef7-4f27-862c-1b98f15c0baf" />
+)
 
 > **Note**: The provided image shows the circuit with a photodiode connected to A0, an LED on pin 9 with a resistor to GND, and a switch (not used in the code). In Tinkercad, you can simulate light changes by adjusting the photodiode’s properties or using an LDR with a light source component.
 
