@@ -7,27 +7,22 @@ Basic understanding of Arduino programming and the Tinkercad interface.
 No physical hardware is required, as Tinkercad simulates all components.
 
 Step 1: Set Up the Circuit in Tinkercad
-
-Create a New Circuit:
+Create a New Circuit
 
 Log in to Tinkercad and start a new circuit project.
 
-
-Add Components:
-
+Add Components
 From the components panel, drag the following to the workspace:
+
 Arduino Uno R3
 16x2 LCD (search for "LCD")
 10kΩ Potentiometer
 Breadboard (optional for organization)
 Jumper wires (available in the workspace)
 
-
-
-
-Wire the Circuit:
-
+Wire the Circuit
 Connect the LCD to the Arduino as follows:
+
 LCD RS to Arduino pin 12
 LCD Enable to Arduino pin 11
 LCD D4 to Arduino pin 5
@@ -38,32 +33,23 @@ LCD R/W to ground (GND on Arduino or breadboard)
 LCD VSS to ground
 LCD VCC to 5V (from Arduino)
 
-
 Connect the potentiometer for contrast:
+
 One outer pin to 5V
 Other outer pin to ground
 Middle pin (wiper) to LCD VO (pin 3)
 
-
-
-
-Adjust Potentiometer:
+Adjust Potentiometer
 
 Click the potentiometer in Tinkercad, and in the properties panel, set the slider to ~50% for initial contrast. Adjust later if the text isn’t visible.
 
-
-
 Step 2: Add the Arduino Code
-
-Open the Code Editor:
+Open the Code Editor
 
 In Tinkercad, click the "Code" button to open the code editor.
 
-
-Paste the Code:
-
+Paste the Code
 Replace the default code with the following:
-
 #include <LiquidCrystal.h>
 
 // Initialize the LCD with the same pin configuration
@@ -72,8 +58,7 @@ LiquidCrystal lcd_1(12, 11, 5, 4, 3, 2);
 int seconds = 0;
 String message = "Type your msg!"; // Default message
 
-void setup()
-{
+void setup() {
   // Start the Serial communication
   Serial.begin(9600);
   
@@ -84,8 +69,7 @@ void setup()
   lcd_1.print(message);
 }
 
-void loop()
-{
+void loop() {
   // Check if new data is available from Serial
   if (Serial.available() > 0) {
     // Read the incoming string
@@ -108,54 +92,45 @@ void loop()
   seconds += 1;
 }
 
-
-Verify the Code:
+Verify the Code
 
 Tinkercad will highlight any syntax errors. The LiquidCrystal library is built into Tinkercad, so no additional setup is needed.
 
-
-
 Step 3: Simulate and Test
-
-Start Simulation:
+Start Simulation
 
 Click "Start Simulation" in Tinkercad to run the circuit and code.
 
-
-Open Serial Monitor:
+Open Serial Monitor
 
 Click the "Serial Monitor" button at the bottom of the code editor.
 Set the baud rate to 9600 (matching Serial.begin(9600);).
 
-
-Send a Message:
+Send a Message
 
 In the Serial Monitor’s input field, type a message (e.g., "Hello Tinkercad!") and press Enter.
 The LCD’s first row should display your message (up to 16 characters).
 The second row shows the seconds counter, updating every second.
 
-
-Adjust Contrast:
+Adjust Contrast
 
 If the LCD text isn’t visible, pause the simulation, adjust the potentiometer slider, and restart.
 
-
-
 Step 4: Customize the Display
+Change Default Message
 
-Change Default Message:
 Edit String message = "Type your msg!"; to a custom message (e.g., "Welcome to LCD!").
 
+Remove Seconds Counter
 
-Remove Seconds Counter:
 Delete these lines from loop() to free the second row:lcd_1.setCursor(0, 1);
 lcd_1.print(seconds);
 
 
 
-
-Add Scrolling for Long Messages:
-Replace the message display code in loop() with:if (Serial.available() > 0) {
+Add Scrolling for Long Messages
+Replace the message display code in loop() with:
+if (Serial.available() > 0) {
   message = Serial.readStringUntil('\n');
   lcd_1.setCursor(0, 0);
   lcd_1.print("                ");
@@ -173,9 +148,6 @@ if (message.length() > 16) {
 }
 
 This scrolls long messages by shifting the display every 500ms.
-
-
-
 Troubleshooting
 
 LCD Blank:
