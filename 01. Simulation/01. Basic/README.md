@@ -107,7 +107,7 @@ This tab is crucial for building circuits in Tinkercad, allowing users to drag a
 The code editor in Tinkercad allows users to write and manage the programs that control their circuits, particularly with microcontrollers like the Arduino Uno R3.
 
 ![Code Editor Interface](./media/image4.png)
-=======
+
 <img width="578" height="69" alt="image" src="https://github.com/user-attachments/assets/1d67b1a4-4332-46c6-85de-bea2cd314bfa" />
 
 
@@ -118,8 +118,7 @@ You can open the code editor by clicking the "Code" button located in the upper 
 - **Blocks**: This method uses prebuilt code blocks that link together like puzzle pieces, similar to Scratch or Snap. It's a good starting point for beginners but offers less flexibility for complex computations or controlling multiple components.
 - **Text**: This option uses a C++ based programming language, allowing users to type their code. It provides a wider range and flexibility for programming intricate circuit operations. When switching to Text, a pop-up message will appear, prompting you to continue.
 
-![Blocks Coding](./media/image5.png) ![Text Coding](./media/image6.png)
-=======
+
 <img width="372" height="519" alt="image" src="https://github.com/user-attachments/assets/5cd9daf9-7b28-4c65-ad4e-e989d6c73cb5" />
 <img width="389" height="517" alt="image" src="https://github.com/user-attachments/assets/9278ec58-356b-48ba-aee9-f8c7c6a178cf" />
 
@@ -156,7 +155,6 @@ Located at the bottom left of the programming screen, the Serial Monitor is used
 
 The simulation feature in Tinkercad allows users to test their circuit designs virtually, observing how components behave according to the programmed code.
 
-![Simulation Interface](./media/image9.png)
 
 <img width="494" height="75" alt="image" src="https://github.com/user-attachments/assets/72ebdd37-6652-424d-bd3d-067e6e9bb76a" />
 <img width="496" height="77" alt="image" src="https://github.com/user-attachments/assets/f3f57281-324b-4cf7-a267-e6c295c2d985" />
