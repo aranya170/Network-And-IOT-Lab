@@ -53,7 +53,6 @@ For hardware design engineers, understanding and avoiding frequent errors is cru
 1. Log in to TinkerCAD (you may need to create an account at [www.tinkercad.com](https://www.tinkercad.com)).
 2. Navigate to "Circuits" from the left menu.
 3. Click "Create new Circuit".
-<<<<<<< HEAD
 4. You will then be in the circuit editor, ready to place components and start designing.
 
 ## Components Tab
@@ -140,8 +139,6 @@ You can open the code editor by clicking the "Code" button located in the upper 
 
 Located at the bottom left of the programming screen, the Serial Monitor is used for outputting information.
 
-![Serial Monitor](./media/image7.png)
-=======
 <img width="1015" height="400" alt="image" src="https://github.com/user-attachments/assets/0cc97384-0a20-40cf-8a91-e37f261df970" />
 
 
