@@ -57,7 +57,7 @@ For hardware design engineers, understanding and avoiding frequent errors is cru
 4. You will then be in the circuit editor, ready to place components and start designing.
 
 ## Components Tab
-=======
+
 
 <img width="292" height="321" alt="image" src="https://github.com/user-attachments/assets/75f042be-d2a8-44f4-abaa-61fa692f0a97" />
 <img width="339" height="314" alt="image" src="https://github.com/user-attachments/assets/a6365e61-f6dc-4a41-b4bc-cdfbf1877a4c" />
@@ -68,7 +68,6 @@ For hardware design engineers, understanding and avoiding frequent errors is cru
 ## Components Tab
 <img width="248" height="699" alt="image" src="https://github.com/user-attachments/assets/f97d57dd-d7cb-41df-b367-eb86a5042601" />
 
->>>>>>> 835434bbde0b42deed4807e32ebc147ff66161b5
 
 ### Categories of Components
 
@@ -106,7 +105,6 @@ This tab is crucial for building circuits in Tinkercad, allowing users to drag a
 
 The code editor in Tinkercad allows users to write and manage the programs that control their circuits, particularly with microcontrollers like the Arduino Uno R3.
 
-![Code Editor Interface](./media/image4.png)
 
 <img width="578" height="69" alt="image" src="https://github.com/user-attachments/assets/1d67b1a4-4332-46c6-85de-bea2cd314bfa" />
 
@@ -189,7 +187,6 @@ Tinkercad also offers "Starter Circuits" that can be found by selecting the "com
 
 Here’s a small tutorial on LED control in TinkerCAD using block-based coding:
 
-![TinkerCAD LED Control with Block Code](./media/image10.jpg)
 
 [TinkerCAD LED Control Tutorial](https://www.youtube.com/watch?v=8KTVTu9iIO0)
 
