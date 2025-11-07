@@ -1,260 +1,226 @@
-# Lab 01: Blink LED - Your First IoT Project
 
-Welcome to your very first hands-on project in the world of IoT (Internet of Things) and embedded systems! If you're new to electronics or programming, don't worry—this lab is designed specifically for beginners. We'll guide you step by step through building a simple circuit and writing code to make an LED blink. Think of this as the "Hello World" program for hardware: it's simple, fun, and teaches foundational concepts that you'll use in more advanced projects.
-By the end of this lab, you'll feel confident working with microcontrollers like Arduino or ESP32, and you'll have a blinking light to show off!
+# Lab 01: ESP32 WiFi configuration
 
-## Objective
-The goal is to learn the basics of microcontroller programming by controlling an LED (a small light) using an Arduino or ESP32 board. You'll connect hardware components, write a simple program, and upload it to make the LED turn on and off repeatedly.
+  
 
-## Learning Outcomes
-- Understand basic microcontroller pin configuration
-- Learn digital output control
-- Understand GPIO (General Purpose Input/Output) pins
-- Introduction to Arduino IDE and code structure
-- Learn basic timing functions
+Welcome to your very first hands-on project in the world of IoT (Internet of Things) and embedded systems! 
+This article is a compilation of useful Wi-Fi functions for the ESP32. We’ll cover the following topics: scan Wi-Fi networks, connect to a Wi-Fi network, get Wi-Fi connection strength, check connection status, reconnect to the network after a connection is lost, Wi-Fi status, Wi-Fi modes, get the ESP32 IP address, set a fixed IP address and more.
 
-## Required Components
-- ESP32 DevKit
-- LED (any color)
-- 220Ω Resistor
-- Breadboard
-- Jumper wires
-- USB cable for programming
+  
 
-## Theory
 
-### What is an LED?
-A Light Emitting Diode (LED) is a semiconductor device that emits light when current flows through it. LEDs have polarity - the longer leg is positive (anode) and shorter leg is negative (cathode).
+## Objectives
 
-### GPIO Pins
-GPIO pins can be configured as either input or output. For blinking an LED, we configure a pin as OUTPUT to control voltage levels (HIGH = 3.3V/5V, LOW = 0V).
+  
 
-### Arduino Code Structure
-Every Arduino sketch has two main functions:
-- `setup()` - Runs once when the program starts
-- `loop()` - Runs repeatedly after setup()
+- Configure ESP32 in WiFi Station (STA) mode to connect to existing wireless networks.
 
-## Circuit Diagram
+- Understand WiFi connection states, signal strength monitoring, and network reconnection strategies.
 
+- Use Serial Monitor for debugging WiFi connection issues and viewing IP address assignments.
+
+- Implement connection timeout handling and auto-reconnect functionality for reliable IoT deployments.
+
+  
+
+
+  
+
+
+## What You'll Learn
+
+  
+
+- ESP32 WiFi modes: Station (STA), Access Point (AP), and combination mode (STA+AP).
+
+- Essential WiFi library functions: WiFi.begin(), WiFi.status(), WiFi.localIP(), and WiFi.RSSI().
+
+- Connection state machine: scanning, connecting, obtaining IP, and maintaining connection.
+
+- Best practices for handling WiFi credentials and connection failures in production devices.
+
+  
+
+
+## Prerequisites
+
+  
+
+- ESP32 development board (ESP32 DevKit, NodeMCU-32S, or similar variant).
+
+- Arduino IDE with ESP32 board support installed via Board Manager.
+
+- USB cable for programming and serial communication.
+
+- Access to a WiFi network with known SSID and password (2.4 GHz band required, as ESP32 does not support 5 GHz).
+
+  
+
+## Hardware Requirements
+
+  
+
+- 1× ESP32 development board (any variant with WiFi capability).
+
+- 1× USB cable (typically USB-A to Micro-USB or USB-C depending on your board).
+
+- Computer with Arduino IDE installed.
+
+  
+
+**Note:** No external components are required for this lab. The ESP32's on-board LED will indicate connection status in advanced examples.
+
+
+## Including the WIFI library
+The first thing you need to do to use the ESP32 Wi-Fi functionalities is to include the WiFi.h library in your code, as follows:
+``` #include  <WiFi.h>```
+
+## ESP32 Wi‑Fi Modes
+
+The ESP32 can act as a Wi‑Fi station, access point, or both. Use `WiFi.mode()` with the desired mode.
+
+cpp
+
+`WiFi.mode(WIFI_STA);  // Station mode  WiFi.mode(WIFI_AP);  // Access Point mode  WiFi.mode(WIFI_AP_STA);  // Access Point + Station mode` 
+
+## Mode Descriptions
+
+-   `WIFI_STA`: The ESP32 connects to an existing access point (station mode).
+    
+-   `WIFI_AP`: Other devices (stations) can connect to the ESP32 (access point mode).
+    
+-   `WIFI_AP_STA`: The ESP32 acts as an access point while also connecting to another access point.
+
+
+
+#### Set the ESP32 as an Access Point
+To set the ESP32 as an access point, set the Wi-Fi mode to access point:
+
+```c
+WiFi.mode(WIFI_AP)
 ```
-Arduino/ESP32          Resistor       LED
-    Pin 13 ----------- 220Ω -------- Anode(+)
-    GND ------------------------------ Cathode(-)
+
+And then, use the  softAP()  method as follows:
+
+```c
+WiFi.softAP(ssid, password);
 ```
 
-**Note:** Always use a current-limiting resistor with LEDs to prevent damage.
+ssid  is the name you want to give to the ESP32 access point, and the  password  variable is the password for the access point. If you don’t want to set a password, set it to  NULL.
 
-## Circuit Connection Steps
+There are also other optional parameters you can pass to the  softAP()  method. Here are all the parameters:
+```c
+WiFi.softAP(const char* ssid, const char* password, int channel, int ssid_hidden, int max_connection)
+```
 
-1. **Insert LED** into breadboard
-   - Long leg (anode) in one row
-   - Short leg (cathode) in another row
-
-2. **Connect Resistor**
-   - One end to LED anode row
-   - Other end to a new row
-
-3. **Connect Jumper Wires**
-   - Digital pin 13 to resistor (connected to LED anode)
-   - GND pin to LED cathode
-
-4. **Connect USB** cable from Arduino to computer
-
-![Components](https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/Arduino_circuit_01_1.png)
-*Caption: Labeled components for the LED blink project: jumper wires, resistor, LED, breadboard, and Arduino Uno board.*
+-   ssid: name for the access point – maximum of 63 characters;
+-   password:  **minimum of 8 characters**; set to  NULL  if you want the access point to be open;
+-   channel: Wi-Fi channel number (1-13)
+-   ssid_hidden: (0 = broadcast SSID, 1 = hide SSID)
+-   max_connection: maximum simultaneous connected clients (1-4)
 
 
-## Code Implementation
+### Wi-Fi Station + Access Point
 
-### Basic Blink Code (Arduino/ESP32)
+The ESP32 can be set as a Wi-Fi station and access point simultaneously. Set its mode to  WIFI_AP_STA.
 
-```cpp
-// Pin definition
-const int LED_PIN = 13;  // Built-in LED on most Arduino boards
-// For ESP32, use GPIO 2: const int LED_PIN = 2;
+```c
+WiFi.mode(WIFI_AP_STA);
+```
+<img width="768" height="416" alt="image" src="https://github.com/user-attachments/assets/1d71a772-be3b-4ffa-871e-11be1bcf5534" />
+
+## Scan Wi-Fi Networks
+
+The ESP32 can scan nearby Wi-Fi networks within its Wi-Fi range. In your Arduino IDE, go to  **File** >  **Examples** >  **WiFi** >  **WiFiScan**. This will load a sketch that scans Wi-Fi networks within the range of your ESP32 board.
+
+![ESP32 Scan WiFi Networks](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2021/02/ESP32-WiFi-Scan-Networks_Wi-Fi-Scan.png?resize=750%2C397&quality=100&strip=all&ssl=1)
+
+This can be useful to check if the Wi-Fi network you’re trying to connect is within the range of your board or other applications. Your Wi-Fi project may not often work because it may not be able to connect to your router due to insufficient Wi-Fi strength.
+
+Here’s the example:
+
+```c
+/*
+  Example from WiFi > WiFiScan
+  Complete details at https://RandomNerdTutorials.com/esp32-useful-wi-fi-functions-arduino/
+*/
+
+#include "WiFi.h"
 
 void setup() {
-  // Initialize the LED pin as output
-  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
+
+  // Set WiFi to station mode and disconnect from an AP if it was previously connected
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect();
+  delay(100);
+
+  Serial.println("Setup done");
 }
 
 void loop() {
-  // Turn LED ON
-  digitalWrite(LED_PIN, HIGH);
-  delay(1000);  // Wait for 1 second (1000 milliseconds)
-  
-  // Turn LED OFF
-  digitalWrite(LED_PIN, LOW);
-  delay(1000);  // Wait for 1 second
+  Serial.println("scan start");
+
+  // WiFi.scanNetworks will return the number of networks found
+  int n = WiFi.scanNetworks();
+  Serial.println("scan done");
+  if (n == 0) {
+      Serial.println("no networks found");
+  } else {
+    Serial.print(n);
+    Serial.println(" networks found");
+    for (int i = 0; i < n; ++i) {
+      // Print SSID and RSSI for each network found
+      Serial.print(i + 1);
+      Serial.print(": ");
+      Serial.print(WiFi.SSID(i));
+      Serial.print(" (");
+      Serial.print(WiFi.RSSI(i));
+      Serial.print(")");
+      Serial.println((WiFi.encryptionType(i) == WIFI_AUTH_OPEN)?" ":"*");
+      delay(10);
+    }
+  }
+  Serial.println("");
+
+  // Wait a bit before scanning again
+  delay(5000);
 }
+
 ```
 
-### Code Explanation
 
-- **`const int LED_PIN = 13;`** - Defines a constant for pin number
-- **`pinMode(LED_PIN, OUTPUT);`** - Configures pin 13 as output
-- **`digitalWrite(LED_PIN, HIGH);`** - Sends 5V to pin (LED ON)
-- **`digitalWrite(LED_PIN, LOW);`** - Sends 0V to pin (LED OFF)
-- **`delay(1000);`** - Pauses program for 1000ms (1 second)
+You can upload it to your board and check the available networks as well as the RSSI (received signal strength indicator).
 
-## Upload and Test
+WiFi.scanNetworks()  returns the number of networks found.
 
-### Steps to Upload Code
-
-1. **Open Arduino IDE**
-2. **Select Board**
-   - Tools → Board → Arduino Uno (or your board)
-   - For ESP32: Tools → Board → ESP32 Dev Module
-3. **Select Port**
-   - Tools → Port → COM3 (or your port)
-4. **Copy and paste the code**
-5. **Click Upload button** (→ icon)
-6. **Observe** - LED should blink every second
-
-## Expected Output
-The LED will turn ON for 1 second, then OFF for 1 second, repeating continuously.
-
-## Experiments and Modifications
-
-### Experiment 1: Change Blink Speed
-Modify delay values to change blink speed:
-```cpp
-digitalWrite(LED_PIN, HIGH);
-delay(250);  // LED ON for 0.25 seconds
-digitalWrite(LED_PIN, LOW);
-delay(250);  // LED OFF for 0.25 seconds
+```c
+int n = WiFi.scanNetworks();
 ```
 
-### Experiment 2: SOS Pattern (Morse Code)
-```cpp
-void loop() {
-  // S - three short blinks
-  for(int i = 0; i < 3; i++) {
-    digitalWrite(LED_PIN, HIGH);
-    delay(200);
-    digitalWrite(LED_PIN, LOW);
-    delay(200);
-  }
-  
-  delay(400);  // Pause between letters
-  
-  // O - three long blinks
-  for(int i = 0; i < 3; i++) {
-    digitalWrite(LED_PIN, HIGH);
-    delay(600);
-    digitalWrite(LED_PIN, LOW);
-    delay(200);
-  }
-  
-  delay(400);  // Pause between letters
-  
-  // S - three short blinks
-  for(int i = 0; i < 3; i++) {
-    digitalWrite(LED_PIN, HIGH);
-    delay(200);
-    digitalWrite(LED_PIN, LOW);
-    delay(200);
-  }
-  
-  delay(2000);  // Wait before repeating SOS
-}
+After the scanning, you can access the parameters about each network.
+
+WiFi.SSID()  prints the SSID for a specific network:
+
+```c
+Serial.print(WiFi.SSID(i));
 ```
 
-### Experiment 3: Multiple LEDs
-Connect 3 LEDs to pins 11, 12, 13:
-```cpp
-const int LED1 = 11;
-const int LED2 = 12;
-const int LED3 = 13;
+WiFi.RSSI()  returns the RSSI of that network. RSSI stands for  **R**eceived  **S**ignal  **S**trength  **I**ndicator. It is an estimated measure of power level that an RF client device is receiving from an access point or router.
 
-void setup() {
-  pinMode(LED1, OUTPUT);
-  pinMode(LED2, OUTPUT);
-  pinMode(LED3, OUTPUT);
-}
-
-void loop() {
-  // Sequential blinking
-  digitalWrite(LED1, HIGH);
-  delay(300);
-  digitalWrite(LED1, LOW);
-  
-  digitalWrite(LED2, HIGH);
-  delay(300);
-  digitalWrite(LED2, LOW);
-  
-  digitalWrite(LED3, HIGH);
-  delay(300);
-  digitalWrite(LED3, LOW);
-}
+```c
+Serial.print(WiFi.RSSI(i));
 ```
 
-### Experiment 4: Breathing Effect (PWM)
-```cpp
-const int LED_PIN = 9;  // Must use PWM-capable pin
+Finally,  WiFi.encryptionType()  returns the network encryption type. That specific example puts a * in the case of open networks. However, that function can return one of the following options (not just open networks):
 
-void setup() {
-  pinMode(LED_PIN, OUTPUT);
-}
+-   WIFI_AUTH_OPEN
+-   WIFI_AUTH_WEP
+-   WIFI_AUTH_WPA_PSK
+-   WIFI_AUTH_WPA2_PSK
+-   WIFI_AUTH_WPA_WPA2_PSK
+-   WIFI_AUTH_WPA2_ENTERPRISE
 
-void loop() {
-  // Fade in
-  for(int brightness = 0; brightness <= 255; brightness++) {
-    analogWrite(LED_PIN, brightness);
-    delay(5);
-  }
+![ESP32 Scan WiFi Networks Example Serial Monitor](https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2021/02/Scan-WiFi-Networks-ESP32-Arduino-IDE-Serial-Monitor.png?resize=733%2C541&quality=100&strip=all&ssl=1)
+
   
-  // Fade out
-  for(int brightness = 255; brightness >= 0; brightness--) {
-    analogWrite(LED_PIN, brightness);
-    delay(5);
-  }
-}
-```
-
-## Troubleshooting
-
-| Problem | Possible Cause | Solution |
-|---------|---------------|----------|
-| LED doesn't light up | LED connected backwards | Reverse LED polarity |
-| LED very dim | Wrong resistor value | Use 220Ω resistor |
-| Upload error | Wrong port selected | Check Tools → Port |
-| Board not detected | Driver not installed | Install CH340/CP2102 driver |
-| LED stays on/off | Code not uploaded | Re-upload code |
-
-## Key Concepts Review
-
-1. **Digital Output** - Sends HIGH (5V) or LOW (0V) signals
-2. **pinMode()** - Configures pin as INPUT or OUTPUT
-3. **digitalWrite()** - Sets pin to HIGH or LOW
-4. **delay()** - Pauses program execution
-5. **Resistor** - Limits current to protect LED
-
-## Challenge Questions
-
-1. How would you make LED blink 5 times then pause for 3 seconds?
-2. What happens if you remove the resistor?
-3. How can you calculate the correct resistor value for different LEDs?
-4. What is PWM and how does it create a breathing effect?
-5. Can you create a traffic light sequence with 3 LEDs?
-
-## Next Steps
-In the next lab, you will learn to connect your ESP32 to WiFi and control the LED through a website, taking your first step into true IoT development!
-
-## Additional Resources
-
-- Arduino Reference: https://www.arduino.cc/reference/en/
-- LED Resistor Calculator: https://www.digikey.com/en/resources/conversion-calculators/conversion-calculator-led-series-resistor
-- Ohm's Law: V = IR (Voltage = Current × Resistance)
-
-## Safety Notes
-- Always disconnect power before changing circuit connections
-- Use appropriate resistor values to prevent component damage
-- Check polarity of components before connecting
-- Avoid short circuits by carefully checking connections
-
----
-
-**Lab Duration:** 30-45 minutes  
-**Difficulty Level:** Beginner  
-**Prerequisites:** None
