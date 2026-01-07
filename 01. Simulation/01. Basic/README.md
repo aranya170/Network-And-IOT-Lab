@@ -1,3 +1,7 @@
+<div align="center">
+  <img width="659" alt="Image" src="https://github.com/user-attachments/assets/5c8d7a11-51a1-4184-bf30-c8d81373ee44" />
+</div>
+
 # Getting Started with TinkerCAD Circuits
 
 [TinkerCAD](https://www.tinkercad.com/) is a web-based simulator that allows you to design and test electronic circuits, including those with Arduino boards, directly in your web browser. It is particularly beginner-friendly and is considered an excellent tool for learning electronics and coding, especially if you do not have access to physical components.
@@ -57,7 +61,6 @@ For hardware design engineers, understanding and avoiding frequent errors is cru
 
 ## Components Tab
 
-
 <img width="292" height="321" alt="image" src="https://github.com/user-attachments/assets/75f042be-d2a8-44f4-abaa-61fa692f0a97" />
 <img width="339" height="314" alt="image" src="https://github.com/user-attachments/assets/a6365e61-f6dc-4a41-b4bc-cdfbf1877a4c" />
 
@@ -106,15 +109,12 @@ The code editor in Tinkercad allows users to write and manage the programs that 
 
 
 <img width="578" height="69" alt="image" src="https://github.com/user-attachments/assets/1d67b1a4-4332-46c6-85de-bea2cd314bfa" />
-
-
 ### Access and Types
 
 You can open the code editor by clicking the "Code" button located in the upper right of the circuit editor. Tinkercad offers two primary ways to program:
 
 - **Blocks**: This method uses prebuilt code blocks that link together like puzzle pieces, similar to Scratch or Snap. It's a good starting point for beginners but offers less flexibility for complex computations or controlling multiple components.
 - **Text**: This option uses a C++ based programming language, allowing users to type their code. It provides a wider range and flexibility for programming intricate circuit operations. When switching to Text, a pop-up message will appear, prompting you to continue.
-
 
 <img width="372" height="519" alt="image" src="https://github.com/user-attachments/assets/5cd9daf9-7b28-4c65-ad4e-e989d6c73cb5" />
 <img width="389" height="517" alt="image" src="https://github.com/user-attachments/assets/9278ec58-356b-48ba-aee9-f8c7c6a178cf" />
@@ -155,6 +155,7 @@ The simulation feature in Tinkercad allows users to test their circuit designs v
 <img width="496" height="77" alt="image" src="https://github.com/user-attachments/assets/f3f57281-324b-4cf7-a267-e6c295c2d985" />
 
 
+
 ### Starting the Simulation
 
 The simulation is initiated by clicking the "Start Simulation" button, typically found on the top right of the toolbar.
@@ -183,7 +184,6 @@ Tinkercad also offers "Starter Circuits" that can be found by selecting the "com
 ## LED Control Tutorial Using Block Code
 
 Here’s a small tutorial on LED control in TinkerCAD using block-based coding:
-
 
 [TinkerCAD LED Control Tutorial](https://www.youtube.com/watch?v=8KTVTu9iIO0)
 
